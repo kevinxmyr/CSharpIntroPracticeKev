@@ -14,14 +14,46 @@ namespace MyNamespace
          // This method is not used in the current code
          return $"Children: {child1} and {child2}";
       }
+
+      static int AddInt(int x, int y)
+      {
+         return x + y;
+      }
+      static double AddDouble(double x, double y)
+      {
+         return x + y;
+      }
+
+      public class Car
+      {
+         public string color = "red";
+      }
+
+//'Program.Car.color' is inaccessible due to its protection level?
       static void Main(string[] args)
       {
+         //OOP:
+         System.Console.WriteLine("________OOP_____");
+
+         Car myCar = new Car();
+         Console.WriteLine($"the color of MyCar is {myCar.color}");
+
+
+         System.Console.WriteLine("_____END_OOP_____");
+         //end of OOP
 
          // Call MyMethod
          var result = Children(child2: "Alice", child1: "Bob");
          System.Console.WriteLine($"The result is: {result}");
+         int addIntResult = AddInt(5, 10);
+         System.Console.WriteLine($"The result of AddInt is: {addIntResult}");
+         double addDoubleResult = AddDouble(5.5, 10.15);
+         System.Console.WriteLine($"The result of AddDouble is: {addDoubleResult}");
 
          System.Console.WriteLine("==========================");
+         System.Console.WriteLine("==========================");
+
+
 
          // Console.WriteLine("Hello, World!");
 
