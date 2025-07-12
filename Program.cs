@@ -102,12 +102,88 @@ namespace MyNamespace
             System.Console.WriteLine($"Even number (using LINQ): {evenNumber}");
          }
 
+         // LINQ Query Syntax
+         var myArray = new int[] { 3, 9, 1, 7, 4, 7, 2, 8, 5, 6 };
+         var linqQuery = from mynum in myArray
+                         where mynum < 5
+                         orderby mynum descending
+                         select mynum;
+         foreach (var num in linqQuery) System.Console.WriteLine($"Sorted number using LINQ: {num}");
+         //LAMBDA EXPRESSIONS
+         var lambdaQuery = myArray
+                           .Where(num => num < 5)
+                           .OrderByDescending(num => num)
+                           .Select(num => $"and numero: {num}");
+
+         foreach (var num in lambdaQuery)
+         {
+            System.Console.WriteLine($"Number (using lambda): {num}");
+         }
+
 
 
          // for (var i = 0; i < listInitialCountries.Count; i++)
          // {
          //    System.Console.WriteLine($"{i}: {listInitialCountries[i]}");
          // }
+
+         var ne = Enumerable.Range(1, 10);
+         System.Console.WriteLine("Numbers from 1 to 10: ");
+         foreach (var number in ne)
+         {
+            System.Console.WriteLine(number);
+         }
+         var firstNumber = ne.FirstOrDefault();
+         var lastNUmber = ne.LastOrDefault();
+
+         var firstEvenNumber = ne.LastOrDefault(n => n % 2 == 0);
+
+         var average = ne.Average();
+         var sumavg = ne.Sum();
+         var count = ne.Count();
+         System.Console.WriteLine($"the avg: {average}, sum: {sumavg}, count: {count}");
+
+         System.Console.WriteLine($"firstnumber: {firstNumber}, lastNUmber: {lastNUmber} {firstEvenNumber}");
+
+         //where in lambda only:
+         var newList = Enumerable.Range(1, 20);
+         var w = newList.Where(n => n <= 5).Sum();
+         System.Console.WriteLine($"the average of numbers less than or equal to 5 is: {w}");
+
+         //range in c# only?
+
+         var listofNumbers = new List<int>(ne);
+         System.Console.WriteLine($"List of numbers: {string.Join(", ", listofNumbers)}");
+
+         listofNumbers = (from num in listofNumbers
+                          where num % 2 == 1
+                          select num).ToList();
+
+         System.Console.WriteLine($"List of odd numbers: {string.Join(", ", listofNumbers)}");
+
+
+         //----
+         System.Console.WriteLine("-------");
+
+         var repeatednumbersArray = new[] { 1, 2, 2, 3, 4, 4 };
+         var listrepeatednumbers = new List<int>(repeatednumbersArray);
+
+         var listofrepeatednumbersDistince = listrepeatednumbers.Distinct().ToList();
+         System.Console.WriteLine($"List of repeated LIST numbers: {string.Join(", ", listofrepeatednumbersDistince)}");
+
+         var distinctNumbers = repeatednumbersArray.Distinct();
+         System.Console.WriteLine($"Distinct numbers: {string.Join(" ", distinctNumbers)} ");
+
+         System.Console.WriteLine("-------");
+         var numero = new[] { 1, 2, 3, 4, 5 };
+         var excludedNUmbers = new[] { 2 };
+         var newnumbers = numero.Except(excludedNUmbers);
+
+         System.Console.WriteLine($"numbers original: {string.Join(",", numero)} without this mofos: {string.Join(", ", newnumbers)}");
+
+         //STRING EXAMPLES:
+
+         
 
 
          System.Console.WriteLine("_____END_OOP_____");
