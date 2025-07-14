@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data.Common;
 using System.Net.WebSockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
 
@@ -181,12 +183,160 @@ namespace MyNamespace
 
          System.Console.WriteLine($"numbers original: {string.Join(",", numero)} without this mofos: {string.Join(", ", newnumbers)}");
 
-         //STRING EXAMPLES:
-
-         
-
-
          System.Console.WriteLine("_____END_OOP_____");
+
+         System.Console.WriteLine("007-STRING-DATETIME-NULLABLE-ENUM");
+         System.Console.WriteLine("string in unmutable");
+         var stringexample = "hello";
+         foreach (var c in stringexample) System.Console.WriteLine(c);
+         stringexample = "world";
+         foreach (var c in stringexample) System.Console.WriteLine(c);
+
+         string sampleString; //null
+         string samplestringnull = null;
+         String stringUsingClass = "test"; //same as small S and BIG S;
+
+         var myname = "John";
+         myname += " Jane";
+         System.Console.WriteLine($"{myname}"); //printing onli
+                                                // can iterate strings ⬇︎
+         foreach (var c in myname) System.Console.WriteLine(c);
+
+         char[] nameChar = myname.ToCharArray(); // convert string to char array DATATYPE
+         var stringFromArray = new string(nameChar); // babalik naman ang char to string
+
+         //verbatim string literal
+         var verbatimString = @"This is a verbatim string literal.
+
+        It can span multiple lines.";
+         System.Console.WriteLine(verbatimString);
+         var stringwithspecialcharacter = @"""test\only""";
+         System.Console.WriteLine(stringwithspecialcharacter);
+         var multiplestringline = @"
+            multi
+            line
+            string
+            ";
+         System.Console.WriteLine(multiplestringline);
+
+         System.Console.WriteLine("STRING ESCAPE SEQUENCE");
+         var stringWithEscapeSequence = "This \t (tab here) is a string with an escape sequence: \nNew line here.";
+         System.Console.WriteLine(stringWithEscapeSequence);
+
+         string firstString = "";
+
+
+         if (!string.IsNullOrEmpty(firstString))
+            System.Console.WriteLine("firstString is NOT null or empty");
+         else
+            System.Console.WriteLine("firstString is null or empty");
+
+         System.Console.WriteLine("END-007-STRING-DATETIME-NULLABLE-ENUM");
+
+         //# MANIPULATE OF STRING VALUES:
+         System.Console.WriteLine("---MANIPULATE OF STRING VALUES---");
+
+         var myString = "Hello, World!";
+         System.Console.WriteLine($"Original string: {myString}");
+         System.Console.WriteLine($"Length of string: {myString.Length}");
+         // Original string
+         string originalString = "heLlO wOrLd and aGaIN";
+
+         // Convert to lowercase for processing
+         string lowerString = originalString.ToLower();
+
+         // Split into words
+         string[] words = lowerString.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+         // Check if there are at least 2 words
+         if (words.Length >= 2)
+         {
+            // Get the second word
+            string secondWord = words[1];
+            Console.WriteLine($"Second word found: '{secondWord}'");
+
+            // Replace the second word with "universe"
+            words[1] = "universe";
+
+            // Join the words back together
+            string result = string.Join(" ", words);
+
+            Console.WriteLine($"Original string: '{originalString}'");
+            Console.WriteLine($"Lowercase string: '{lowerString}'");
+            Console.WriteLine($"Final result: '{result}'");
+         }
+         else
+         {
+            Console.WriteLine("String doesn't have enough words to replace the second word.");
+         }
+         System.Console.WriteLine($"Lowercase: {myString.ToLower()}");
+         System.Console.WriteLine($"Contains 'World': {myString.Contains("World")}");
+         System.Console.WriteLine($"reversed string: {new string(myString.Reverse().ToArray())}");
+         //capitalize first letter in every word in a string
+         System.Console.WriteLine($"capitalize first letter in every word in a string: {string.Join(" ", myString.Split(' ').Select(x => x.Substring(0, 1).ToUpper() + x.Substring(1)))}");
+         string newstring = "0123456789";
+         System.Console.WriteLine($"{string.Join(" ", newstring.Split(' ').Select(letter => letter.Substring(0, 1).ToUpper() + letter.Substring(1)))}");
+
+         System.Console.WriteLine($"original string: {myString},  substring of 1, 4: {myString.Substring(0, 2)}");
+
+         var strToTrim = "   Hello, World!   ";
+         System.Console.WriteLine($"Trimmed string: '{strToTrim.Trim()}'");
+         System.Console.WriteLine($"Trimmed start: '{strToTrim.TrimStart()}'");
+         System.Console.WriteLine($"Trimmed end: '{strToTrim.TrimEnd()}'");
+         System.Console.WriteLine($"Index of 'World': {myString.IndexOf("World")}");
+         System.Console.WriteLine($"Index of 'World' (case-insensitive): {myString.IndexOf("world", StringComparison.OrdinalIgnoreCase)}");
+
+         var myString2 = "Hello-World!-again-and-again:what:is-this.again";
+         var myString2Split = string.Join("*", myString2.Split(new char[] { '-', '!', ':', '.', ' ' }));
+         System.Console.WriteLine($"{myString2Split}");
+         // foreach (var word in myString2Split)
+         // {
+         //    System.Console.Write(word);
+         // }
+
+         // var joiningwithaskterisk = string.Join("*", myString2Split);
+         // System.Console.WriteLine($"\nJoining with asterisk: {joiningwithaskterisk}");
+
+         //!NULLABLE
+
+         string str = null;
+         int? nullablenum = 2;
+
+         if (nullablenum.HasValue) System.Console.WriteLine(nullablenum.Value);
+         else System.Console.WriteLine("nullablenum is null.");
+
+
+         //! enums - decalared a enum below
+
+         var bg = Gender.Male;
+         System.Console.WriteLine($"gender: {bg}, gender value in number: {(int)bg}");
+
+         switch (bg)
+         {
+            case Gender.Male:
+               System.Console.WriteLine("MALE");
+               break;
+            case (Gender.Female):
+               System.Console.WriteLine("FEMALE");
+               break;
+            default:
+               System.Console.WriteLine("unknown bich");
+               break;
+         }
+
+         var valForGender = 1;
+         Gender genderfromint = (Gender)valForGender;
+         var genderStringValue = "Male";
+         Gender genderfromstring = (Gender)Enum.Parse(typeof(Gender), genderStringValue);
+
+         System.Console.WriteLine($"gender from int {genderfromint}");
+         System.Console.WriteLine($"gender from string {genderfromstring}");
+
+
+
+
+
+
          //end of OOP
 
          // Call MyMethod
@@ -278,6 +428,28 @@ namespace MyNamespace
          //       System.Console.WriteLine($"cell: {cell}");
          //    }
          // }
+      }
+      public enum Gender
+      {
+         Male,
+         Female,
+         Unknown
+      }
+
+      public enum SampleQuarterMonths
+      {
+         First = 3,
+         Second = 6,
+         Third = 9,
+         Fourth = 12
+      }
+
+      public enum SampleStartsAt5 //mag increment siya based sa unang value dos is 10, tres is 15
+      {
+         Una = 5,
+         Dos,
+         Tres
+
       }
 
    }
